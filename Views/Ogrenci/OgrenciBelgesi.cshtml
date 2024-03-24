@@ -1,0 +1,68 @@
+﻿@model OgrenciBilgiSistemi.Models.OgrenciModel
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Öğrenci Belgesi</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            body {
+                min-height: 100vh;
+            }
+
+            .card {
+                height: 90vh;
+                max-width: 90vh;
+            }
+        </style>
+        <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    </head>
+
+    <body>
+
+        <div class="container-fluid mx-auto">
+            <div class="card mx-auto">
+                <div class="card-header text-center">
+                    <h4>Bandırma Onyedi Eylül Üniversitesi</h4>
+                    <strong>@ViewBag.Bolumadi @ViewBag.bolumdili</strong>
+                    <p> Öğrenci Belgesi</p>
+                </div>
+                <div class="card-body">
+                    <div class="container  mx-auto">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Öğrenci Adı Soyadı:</strong> @Model.Adi @Model.Soyadi</p>
+                                <p><strong>Öğrenci TcNo:</strong> @Model.TcNo</p>  
+                                <p><strong>Öğrenci Numarası:</strong> @Model.OgrenciNo</p>
+                                <p><strong>Bölüm:</strong> @ViewBag.Bolumadi @ViewBag.bolumdili</p>
+                                <p><strong>Not Ortalaması:</strong> -</p>
+                            </div>
+                            <div class="col-md-6">
+                                fotoğraf
+                            </div>
+                        </div>
+                        <img src="../wwwroot/Content/images/Yok_Logo.png" alt="Öğrenci Fotoğrafı" class="img-fluid" style="width:40%; height:20%">
+                    </div>
+                </div>
+                <div class="card-footer text-muted text-center">
+                    <p>Belge @ViewBag.Tarih 'ten sonra geçerlidir.</p>
+                </div>
+            </div>
+        <button type="button" id="pdfButton" class="btn btn-success px-5" onclick="convertToPDF()">Pdf'e dönüştür</button>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+        function convertToPDF() {
+            var pdf = html2pdf();
+            var cardElement = document.querySelector('.card');
+
+            pdf.from(cardElement).outputPdf('dataurlnewwindow');
+        }
+        </script>
+    </body>
+
+</html>

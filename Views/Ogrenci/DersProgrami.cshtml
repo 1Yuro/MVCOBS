@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenci Belgesi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+        }
+
+        .card {
+            min-height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid mx-auto">
+        <div class="card mx-auto">
+            <div class="card-header text-center">
+                <strong>Ders Programı</strong>
+            </div>
+            <div class="card-body">
+                <div class="container  mx-5">
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th scope="col">Saat</th>
+                                    <th scope="col">Pazartesi</th>
+                                    <th scope="col">Salı</th>
+                                    <th scope="col">Çarşamba</th>
+                                    <th scope="col">Perşembe</th>
+                                    <th scope="col">Cuma</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 47; i < 56; i++)
+                                {
+                                    <tr>
+                                        <td class="text-center" style="height: 70px;width: 100px;min-width: 100px; vertical-align: middle;">@GetSaat(i)</td>
+                                        <td class="text-center" style="height: 70px;width: 250px;min-width: 250px; vertical-align: middle;">
+                                           @foreach (var gelenders in ViewBag.dersler)
+                                           {
+                                               if(gelenders.DersSaatiID==i && gelenders.DersGunuID==40)
+                                                {
+                                                    @gelenders.DersKodu <br />
+                                                    @gelenders.DersAdi <br />
+                                                }
+                                            }
+                                        </td>
+                                        <td class="text-center" style="height: 70px;width: 250px;min-width: 250px; vertical-align: middle;">
+                                            @foreach (var gelenders in ViewBag.dersler)
+                                            {
+                                                if (gelenders.DersSaatiID == i && gelenders.DersGunuID == 41)
+                                                {
+                                                    @gelenders.DersKodu <br/>
+                                                    @gelenders.DersAdi <br />
+                                                }
+                                            }
+                                        </td>
+                                        <td class="text-center" style="height: 70px;width: 250px;min-width: 250px; vertical-align: middle;">
+                                            @foreach (var gelenders in ViewBag.dersler)
+                                            {
+                                                if (gelenders.DersSaatiID == i && gelenders.DersGunuID == 42)
+                                                {
+                                                    @gelenders.DersKodu <br/>
+                                                    @gelenders.DersAdi <br />
+                                                }
+                                            }
+                                        </td>
+                                        <td class="text-center" style="height: 70px;width: 250px;min-width: 250px; vertical-align: middle;">
+                                            @foreach (var gelenders in ViewBag.dersler)
+                                            {
+                                                if (gelenders.DersSaatiID == i && gelenders.DersGunuID == 43)
+                                                {
+                                                    @gelenders.DersKodu <br />
+                                                    @gelenders.DersAdi <br />
+                                                }
+                                            }
+                                        </td>
+                                        <td class="text-center" style="height: 70px;width: 200px;min-width: 200px; vertical-align: middle;">
+                                            @foreach (var gelenders in ViewBag.dersler)
+                                            {
+                                                if (gelenders.DersSaatiID == i && gelenders.DersGunuID == 44)
+                                                {
+                                                    @gelenders.DersKodu <br />
+                                                    @gelenders.DersAdi <br />
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        @functions {
+            string GetSaat(int index)
+            {
+                switch (index)
+                {
+                    case 47:
+                        return "9:30";
+                    case 48:
+                        return "10:20";
+                    case 49:
+                        return "11:10";
+                    case 50:
+                        return "12:50";
+                    case 51:
+                        return "13:40";
+                    case 52:
+                        return "14:30";
+                    case 53:
+                        return "15:20";
+                    case 54:
+                        return "16:10";
+                    case 55:
+                        return "17:00";
+                    default:
+                        return "";
+                }
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

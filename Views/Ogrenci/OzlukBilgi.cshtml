@@ -1,0 +1,81 @@
+﻿@model OgrenciBilgiSistemi.Models.OgrenciModel
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anasayfa</title>
+    <link rel="stylesheet" href="../wwwroot/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../wwwroot/Content/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .card {
+            border: 1px solid #ced4da;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            border-bottom: 1px solid #0056b3;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .mb-3 {
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Profil Sayfası</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <strong>Adı:</strong> @Model.Adi
+                            </div>
+                            <div class="mb-3">
+                            <strong>Soyadi:</strong> @Model.Soyadi
+                            </div>
+                            <div class="mb-3">
+                            <strong>Email:</strong> @Model.Email
+                            </div>
+                            <div class="mb-3">
+                            <strong>DogumTarihi:</strong> @Model.DogumTarihi
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../wwwroot/Content/js/Ogrenci.js"></script>
+    <script src="../wwwroot/Content/js/bootstrap.bundle.min.js"></script>
+    <script src="../wwwroot/Content/js/bootstrap.bundle.min.js.map"></script>
+</body>
+
+</html>

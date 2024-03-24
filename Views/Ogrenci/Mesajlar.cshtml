@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesajlar</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        #Mesajdiv {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #MesajEkrani {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .mesajlarogretmen {
+            height: 100vh;
+            overflow-y: auto;
+            background-color: #e9ecef;
+            border-radius: 10px;
+        }
+
+        .ogretmengetir {
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .ogretmengetir:hover {
+                background-color: #d6d8db;
+            }
+
+        #MesajIframe {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid mx-auto border rounded p-3 text-center bg-light" id="Mesajdiv">
+        <div class="mx-auto text-center row rounded" id="MesajEkrani">
+            <div class="col-2 mesajlarogretmen">
+                <div class="baslik">Öğretim Görevlileri</div> <hr />
+                @foreach (var ogrelme in ViewBag.ogrelm)
+                {
+                    <div class="border my-3 mx-auto" onclick="changeIframeSrc('Ogrenci', 'MesajlarIcerik', @ViewBag.Ogrenciid, @ogrelme.OgretimElemaniID)">
+                        <div class="ogretmengetir m-2 p-3" id="@ogrelme.OgretimElemaniID" value="@ogrelme.OgretimElemaniID">
+                            @ogrelme.Adi @ogrelme.Soyadi
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-10">
+                <iframe id="MesajIframe" src=""></iframe>
+            </div>
+        </div>
+    </div>
+    <script>
+        //Mesajlar içerik çağırıyor iframe için
+        function changeIframeSrc(controller, action, ogrenciid, ogretimElemaniID) {
+            var iframe = document.getElementById("MesajIframe");
+            var newSrc = '/' + controller + '/' + action + '?ogrenciid=' + ogrenciid + '&ogrelmid=' + ogretimElemaniID;
+            iframe.src = newSrc;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

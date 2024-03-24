@@ -1,0 +1,51 @@
+﻿@*@model List<OgrenciBilgiSistemi.Models.MufredatModel>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anasayfa</title>
+    <link rel="stylesheet" href="../wwwroot/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../wwwroot/Content/css/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+</head>
+<body>
+    <select id="akademikYilSecimi">
+        <option value="2023-2024">2023-2024</option>
+        <option value="2024-2025">2024-2025</option>
+        <!-- Diğer akademik yılları buraya ekleyin -->
+    </select>
+
+    <table id="mufredatTablosu">
+        <thead>
+            <tr>
+                <th>Akademik Yıl</th>
+                <th>Ders Kodu</th>
+                <th>Müfredat Ders Adı</th>
+                <th>Zorunlu</th>
+                <th>Kredi</th>
+                <th>AKTS</th>
+
+                <!-- İhtiyacınıza göre diğer sütunları ekleyin -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ders in Model)
+            {
+                <tr data-akademikYil="@ders.AkademikYil">
+                    <td>@ders.DersKodu</td>
+                    <td>@ders.DersAdi</td>
+                    <td>@ders.DersKredi</td>
+                    <!-- Diğer sütunları buraya göre düzenleyin -->
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script src="../wwwroot/Content/js/Ogrenci.js"></script>
+    <script src="../wwwroot/Content/js/bootstrap.bundle.min.js"></script>
+    <script src="../wwwroot/Content/js/bootstrap.bundle.min.js.map"></script>
+</body>
+
+</html>*@

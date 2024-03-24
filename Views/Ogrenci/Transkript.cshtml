@@ -1,0 +1,319 @@
+﻿@model OgrenciBilgiSistemi.Models.OgrenciModel
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenci Belgesi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="card mx-auto" style="width:150vh;">
+            <div class="card-header text-center">
+                <h4>Bandırma Onyedi Eylül Üniversitesi</h4>
+                <strong>@ViewBag.BolumAdi</strong>
+                <p> @Model.Adi @Model.Soyadi Transkripti</p>
+                <div class="container  mx-auto">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Öğrenci Adı Soyadı:@Model.Adi @Model.Soyadi</p>
+                            <p>Öğrenci TcNo:@Model.TcNo</p>
+                            <p>Öğrenci No: @Model.OgrenciNo</p>
+                            <p>Bölüm: @ViewBag.BolumAdi</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Öğrenci Kayıt Tarihi: @Model.KayitTarihi</p>
+                            <p>Öğrenci Ayrılma Tarihi: @Model.AyrilmaTarihi</p>
+                            <p>Puan ortalaması:</p>
+                            <p>Belge Tarihi: @ViewBag.Tarih</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="container  mx-auto">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            @foreach (var i in new[] { 1, 3, 5, 7 })
+                            {
+                                <table class="table table-bordered">
+                                    <thead class="bg-dark text-white">
+                                        <tr>
+                                            <th colspan="6" class="text-center">@i . Dönem</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Ders Kodu</strong></td>
+                                            <td><strong>Ders Adi</strong></td>
+                                            <td><strong>Teorik</strong></td>
+                                            <td><strong>Uygulama</strong></td>
+                                            <td><strong>Ortalama</strong></td>
+                                            <td><strong>Harf Notu</strong></td>
+                                        </tr>
+                                        @foreach (var gelenders in ViewBag.Transkript)
+                                        {
+                                            if (gelenders.DersDonem == i)
+                                            {
+                                                <tr>
+                                                    <td>@gelenders.DersKodu</td>
+                                                    <td>@gelenders.DersAdi</td>
+                                                    <td>@gelenders.Teorik</td>
+                                                    <td>@gelenders.Uygulama</td>
+                                                    <td> @*HarfNotuna göre ortalama değer çekme*@
+                                                        @{
+                                                            double not;
+                                                            switch (gelenders.DurumID)
+                                                            {
+                                                                case 64:
+                                                                    not = 4.00;
+                                                                    break;
+                                                                case 65:
+                                                                    not = 3.50;
+                                                                    break;
+                                                                case 66:
+                                                                    not = 3.00;
+                                                                    break;
+                                                                case 67:
+                                                                    not = 2.50;
+                                                                    break;
+                                                                case 68:
+                                                                    not = 2.00;
+                                                                    break;
+                                                                case 69:
+                                                                    not = 1.50;
+                                                                    break;
+                                                                case 70:
+                                                                    not = 1.00;
+                                                                    break;
+                                                                case 71:
+                                                                    not = 0.00;
+                                                                    break;
+                                                                case 72:
+                                                                    not = 0.00;
+                                                                    break;
+                                                                default:
+                                                                    not = -1.00;
+                                                                    break;
+                                                            }
+                                                            if (not >= 0)
+                                                            {
+                                                                @not.ToString("N2")
+                                                            }
+                                                            else
+                                                            {
+                                                                @not
+                                                            }
+                                                        }
+                                                    </td>
+
+                                                    <td> @*Harf Notu Çekme*@
+                                                        @{ 
+                                                            string durumText;
+                                                            switch (gelenders.DurumID)
+                                                            {
+                                                                case 64:
+                                                                    durumText = "AA";
+                                                                    break;
+                                                                case 65:
+                                                                    durumText = "BA";
+                                                                    break;
+                                                                case 66:
+                                                                    durumText = "BB";
+                                                                    break;
+                                                                case 67:
+                                                                    durumText = "CB";
+                                                                    break;
+                                                                case 68:
+                                                                    durumText = "CC";
+                                                                    break;
+                                                                case 69:
+                                                                    durumText = "DC";
+                                                                    break;
+                                                                case 70:
+                                                                    durumText = "DD";
+                                                                    break;
+                                                                case 71:
+                                                                    durumText = "DZ";
+                                                                    break;
+                                                                case 72:
+                                                                    durumText = "FF";
+                                                                    break;
+                                                                default:
+                                                                    durumText = "Belirtilmemiş Durum";
+                                                                    break;
+                                                            }
+                                                            @durumText
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                        <tr>
+                                            <td colspan="6"><strong></strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
+                        <div class="col-md-6">
+                            @foreach (var i in new[] { 2, 4, 6, 8 })
+                            {
+                                <table class="table table-bordered">
+                                    <thead class="bg-dark text-white">
+                                        <tr>
+                                            <th colspan="6" class="text-center">@i . Dönem</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Ders Kodu</strong></td>
+                                            <td><strong>Ders Adi</strong></td>
+                                            <td><strong>Teorik</strong></td>
+                                            <td><strong>Uygulama</strong></td>
+                                            <td><strong>Ortalama</strong></td>
+                                            <td><strong>Harf Notu</strong></td>
+                                        </tr>
+                                        @foreach (var gelenders in ViewBag.Transkript)
+                                        {
+                                            if (gelenders.DersDonem == i)
+                                            {
+                                                <tr>
+                                                    <td>@gelenders.DersKodu</td>
+                                                    <td>@gelenders.DersAdi</td>
+                                                    <td>@gelenders.Teorik</td>
+                                                    <td>@gelenders.Uygulama</td>
+                                                    <td>
+                                                        @*HarfNotuna göre ortalama değer çekme*@
+                                                        @{
+                                                            double not;
+                                                            switch (gelenders.DurumID)
+                                                            {
+                                                                case 64:
+                                                                    not = 4.00;
+                                                                    break;
+                                                                case 65:
+                                                                    not = 3.50;
+                                                                    break;
+                                                                case 66:
+                                                                    not = 3.00;
+                                                                    break;
+                                                                case 67:
+                                                                    not = 2.50;
+                                                                    break;
+                                                                case 68:
+                                                                    not = 2.00;
+                                                                    break;
+                                                                case 69:
+                                                                    not = 1.50;
+                                                                    break;
+                                                                case 70:
+                                                                    not = 1.00;
+                                                                    break;
+                                                                case 71:
+                                                                    not = 0.00;
+                                                                    break;
+                                                                case 72:
+                                                                    not = 0.00;
+                                                                    break;
+                                                                default:
+                                                                    not = -1.00;
+                                                                    break;
+                                                            }
+                                                            if (not >= 0)
+                                                            {
+                                                                @not.ToString("N2")
+                                                            }
+                                                            else
+                                                            {
+                                                                @not
+                                                            }
+                                                        }
+                                                    </td>
+
+                                                    <td>
+                                                        @*Harf Notu Çekme*@
+                                                        @{
+                                                            string durumText;
+                                                            switch (gelenders.DurumID)
+                                                            {
+                                                                case 64:
+                                                                    durumText = "AA";
+                                                                    break;
+                                                                case 65:
+                                                                    durumText = "BA";
+                                                                    break;
+                                                                case 66:
+                                                                    durumText = "BB";
+                                                                    break;
+                                                                case 67:
+                                                                    durumText = "CB";
+                                                                    break;
+                                                                case 68:
+                                                                    durumText = "CC";
+                                                                    break;
+                                                                case 69:
+                                                                    durumText = "DC";
+                                                                    break;
+                                                                case 70:
+                                                                    durumText = "DD";
+                                                                    break;
+                                                                case 71:
+                                                                    durumText = "DZ";
+                                                                    break;
+                                                                case 72:
+                                                                    durumText = "FF";
+                                                                    break;
+                                                                default:
+                                                                    durumText = "Belirtilmemiş Durum";
+                                                                    break;
+                                                            }
+                                                            @durumText
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                        <tr>
+                                            <td colspan="6"><strong></strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted text-center">
+                <p>Belge @ViewBag.Tarih 'ten sonra geçerlidir.</p>
+            </div>
+        </div>
+        <button type="button" id="pdfButton" class="btn btn-success px-5" onclick="convertToPDF()">Pdf'e dönüştür</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function convertToPDF() {
+            var element = document.querySelector('.card');
+            var options = {
+                pagesplit: true,
+                  margin: 0,
+                  filename: 'card.pdf',
+                  image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'mm', format: 'a3', orientation: 'Portrait' }
+            };
+            html2pdf(element, options);
+
+        }
+    </script>
+</body>
+
+</html>

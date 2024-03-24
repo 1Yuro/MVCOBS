@@ -1,0 +1,68 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenci Belgesi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+        }
+
+        .card {
+            min-height: 100vh;
+        }
+    </style>
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid mx-auto">
+        <div class="card mx-auto">
+            <div class="card-header text-center">
+                <strong>Not Listesi</strong>
+            </div>
+            <div class="card-body">
+                <div class="container  mx-auto">
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th colspan="5" class="text-center">Sınav notları</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ders Kodu</strong></td>
+                                    <td><strong>Ders Adi</strong></td>
+                                    <td><strong>AKTS</strong></td>
+                                    <td><strong>VizeNotu</strong></td>
+                                    <td><strong>FinalNotu</strong></td>
+                                </tr>
+                                @foreach (var gelenders in ViewBag.cevap)
+                                {
+                                    <tr>
+                                        <td>@gelenders.DersKodu</td>
+                                        <td>@gelenders.DersAdi</td>
+                                        <td>@gelenders.ECTS</td>
+                                        <td>@gelenders.VizeNotu</td>
+                                        <td>@gelenders.FinalNotu</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

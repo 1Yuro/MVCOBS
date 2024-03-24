@@ -1,0 +1,289 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenci Belgesi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+        }
+
+        .card {
+            min-height: 100vh;
+        }
+    </style>
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid mx-auto">
+        <div class="card mx-auto">
+            <div class="card-header text-center">
+                <h4>Bandırma Onyedi Eylül Üniversitesi</h4>
+                <strong>@ViewBag.Bolumadi @ViewBag.bolumdili Müfredatı</strong>
+            </div>
+            <div class="card-body">
+                <div class="container  mx-auto">
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th colspan="5" class="text-center">1. Dönem Dersleri</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ders Kodu</strong></td>
+                                    <td><strong>Ders Adi</strong></td>
+                                    <td><strong>Z</strong></td>
+                                    <td><strong>Kredi</strong></td>
+                                    <td><strong>AKTS</strong></td>
+                                </tr>
+                                @foreach (var gelenders in ViewBag.dersler1)
+                                {
+                                    <tr>
+                                        <td>@gelenders.DersKodu</td>
+                                        <td>@gelenders.DersAdi</td>
+                                        <td>@(gelenders.DersTuruID == 33 ? "Z" : "S")</td>
+                                        <td>@gelenders.Kredi</td>
+                                        <td>@gelenders.ECTS</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="5"><strong>Toplam Kredi : @ViewBag.toplamkredi1 Toplam AKTS : @ViewBag.toplamakts1</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th colspan="5" class="text-center">2. Dönem Dersleri</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ders Kodu</strong></td>
+                                    <td><strong>Ders Adi</strong></td>
+                                    <td><strong>Z</strong></td>
+                                    <td><strong>Kredi</strong></td>
+                                    <td><strong>AKTS</strong></td>
+                                </tr>
+                                @foreach (var gelenders in ViewBag.dersler2)
+                                {
+                                    <tr>
+                                        <td>@gelenders.DersKodu</td>
+                                        <td>@gelenders.DersAdi</td>
+                                        <td>@(gelenders.DersTuruID == 33 ? "Z" : "S")</td>
+                                        <td>@gelenders.Kredi</td>
+                                        <td>@gelenders.ECTS</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="5"><strong>Toplam Kredi : @ViewBag.toplamkredi2 Toplam AKTS : @ViewBag.toplamakts2</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th colspan="5" class="text-center">3. Dönem Dersleri</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ders Kodu</strong></td>
+                                    <td><strong>Ders Adi</strong></td>
+                                    <td><strong>Z</strong></td>
+                                    <td><strong>Kredi</strong></td>
+                                    <td><strong>AKTS</strong></td>
+                                </tr>
+                                @foreach (var gelenders in ViewBag.dersler3)
+                                {
+                                    <tr>
+                                        <td>@gelenders.DersKodu</td>
+                                        <td>@gelenders.DersAdi</td>
+                                        <td>@(gelenders.DersTuruID == 33 ? "Z" : "S")</td>
+                                        <td>@gelenders.Kredi</td>
+                                        <td>@gelenders.ECTS</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="5"><strong>Toplam Kredi : @ViewBag.toplamkredi3 Toplam AKTS : @ViewBag.toplamakts3</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                                        <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th colspan="5" class="text-center">4. Dönem Dersleri</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ders Kodu</strong></td>
+                                    <td><strong>Ders Adi</strong></td>
+                                    <td><strong>Z</strong></td>
+                                    <td><strong>Kredi</strong></td>
+                                    <td><strong>AKTS</strong></td>
+                                </tr>
+                                @foreach (var gelenders in ViewBag.dersler4)
+                                {
+                                    <tr>
+                                        <td>@gelenders.DersKodu</td>
+                                        <td>@gelenders.DersAdi</td>
+                                        <td>@(gelenders.DersTuruID == 33 ? "Z" : "S")</td>
+                                        <td>@gelenders.Kredi</td>
+                                        <td>@gelenders.ECTS</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="5"><strong>Toplam Kredi : @ViewBag.toplamkredi4 Toplam AKTS : @ViewBag.toplamakts4</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                                        <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th colspan="5" class="text-center">5. Dönem Dersleri</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ders Kodu</strong></td>
+                                    <td><strong>Ders Adi</strong></td>
+                                    <td><strong>Z</strong></td>
+                                    <td><strong>Kredi</strong></td>
+                                    <td><strong>AKTS</strong></td>
+                                </tr>
+                                @foreach (var gelenders in ViewBag.dersler5)
+                                {
+                                    <tr>
+                                        <td>@gelenders.DersKodu</td>
+                                        <td>@gelenders.DersAdi</td>
+                                        <td>@(gelenders.DersTuruID == 33 ? "Z" : "S")</td>
+                                        <td>@gelenders.Kredi</td>
+                                        <td>@gelenders.ECTS</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="5"><strong>Toplam Kredi : @ViewBag.toplamkredi5 Toplam AKTS : @ViewBag.toplamakts5</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                                        <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th colspan="5" class="text-center">6. Dönem Dersleri</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ders Kodu</strong></td>
+                                    <td><strong>Ders Adi</strong></td>
+                                    <td><strong>Z</strong></td>
+                                    <td><strong>Kredi</strong></td>
+                                    <td><strong>AKTS</strong></td>
+                                </tr>
+                                @foreach (var gelenders in ViewBag.dersler6)
+                                {
+                                    <tr>
+                                        <td>@gelenders.DersKodu</td>
+                                        <td>@gelenders.DersAdi</td>
+                                        <td>@(gelenders.DersTuruID == 33 ? "Z" : "S")</td>
+                                        <td>@gelenders.Kredi</td>
+                                        <td>@gelenders.ECTS</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="5"><strong>Toplam Kredi : @ViewBag.toplamkredi6 Toplam AKTS : @ViewBag.toplamakts6</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                                        <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th colspan="5" class="text-center">7. Dönem Dersleri</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ders Kodu</strong></td>
+                                    <td><strong>Ders Adi</strong></td>
+                                    <td><strong>Z</strong></td>
+                                    <td><strong>Kredi</strong></td>
+                                    <td><strong>AKTS</strong></td>
+                                </tr>
+                                @foreach (var gelenders in ViewBag.dersler7)
+                                {
+                                    <tr>
+                                        <td>@gelenders.DersKodu</td>
+                                        <td>@gelenders.DersAdi</td>
+                                        <td>@(gelenders.DersTuruID == 33 ? "Z" : "S")</td>
+                                        <td>@gelenders.Kredi</td>
+                                        <td>@gelenders.ECTS</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="5"><strong>Toplam Kredi : @ViewBag.toplamkredi7 Toplam AKTS : @ViewBag.toplamakts7</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12">
+                        <table class="table table-bordered">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th colspan="5" class="text-center">8. Dönem Dersleri</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ders Kodu</strong></td>
+                                    <td><strong>Ders Adi</strong></td>
+                                    <td><strong>Z</strong></td>
+                                    <td><strong>Kredi</strong></td>
+                                    <td><strong>AKTS</strong></td>
+                                </tr>
+                                @foreach (var gelenders in ViewBag.dersler8)
+                                {
+                                    <tr>
+                                        <td>@gelenders.DersKodu</td>
+                                        <td>@gelenders.DersAdi</td>
+                                        <td>@(gelenders.DersTuruID == 33 ? "Z" : "S")</td>
+                                        <td>@gelenders.Kredi</td>
+                                        <td>@gelenders.ECTS</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="5"><strong>Toplam Kredi : @ViewBag.toplamkredi8 Toplam AKTS : @ViewBag.toplamakts8</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

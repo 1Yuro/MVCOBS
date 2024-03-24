@@ -1,0 +1,109 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model OgrenciBilgiSistemi.Models.MufredatModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MufredatKayit</title>
+    <link rel="stylesheet" href="../wwwroot/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+</head>
+<body>
+    <div class="container-fluid row mx-auto border rounded p-5  bg-light" style="width:100%;height:100vh" id="MufredatKayitdiv">
+        <div class="mx-auto text-center row  rounded" style=" " id="MufredatKayitEkrani">
+            <div class="col-6 border" style="max-height:100%; overflow-y: auto;">
+                @foreach (var mufredat in ViewBag.Mufredatlar)
+                {
+                    <div class="border mt-3 ">
+                        <div onclick="" class="mufredatgetirdiv m-1 p-3" id="@mufredat.MufredatID" value="@mufredat.MufredatAdi">@mufredat.MufredatAdi <br> @mufredat.AkademikYilID <br> @(mufredat.Aktif ? "Aktif" : "Pasif") </div>
+                        <div class="row justify-content-evenly">
+                            <button type="button" class="btn btn-secondary px-5 col-5" onclick="PasifHaleGetir(@mufredat.MufredatID)">Pasif Hale Getir</button>
+                            <button type="button" class="btn btn-secondary px-5 col-5">Dersleri Görüntüle</button>
+                        </div>
+                    </div>
+                }        
+            </div>
+            <div class="col-6 border">
+                <form asp-action="MufredatKayitKontrol" asp-controller="OgrElm" method="post">
+                    <div class="Column mx-auto mt-5">
+                        <h1> Müfredat</h1>
+                        <div class="input-group mb-3 mt-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-code"></i></span>
+                            <input type="text" asp-for="MufredatAdi" class="form-control" placeholder="Müfredat Adı:" aria-label="MufredatAdi" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="mx-auto text-center">
+                            @*Bolum*@
+                            <div class="mb-3 mt-3">
+                                <select asp-for="BolumID" class="form-control">
+                                    <option value="Secilemez">-- Bolum Seçininiz --</option>
+                                    @foreach (var bolum in ViewBag.Bolumler)
+                                    {
+                                        <option value="@bolum.BolumID">@bolum.BolumAdi</option>
+                                    }
+                                </select>
+                            </div>
+                            @*Cinsiyet*@
+                            <div class="mb-3 mt-3 mx-auto">
+                                <label>
+                                    <input type="radio" name="Aktif" value="true" asp-for="Aktif" />
+                                    Aktif
+                                </label>
+                                <label>
+                                    <input type="radio" name="Aktif" value="false" asp-for="Aktif" />
+                                    Pasif
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-3 text-center">
+                        <button type="submit" class="btn btn-success px-5">Kaydet</button>
+                    </div>
+                </form>
+                <div class="mx-auto mt-5">
+                    <div class="mb-3 mt-5">
+                        <select id="mufredatsecimi" class="form-control">
+                            <option value="Secilemez">-- Müfredat Seçininiz --</option>
+                            @foreach (var mufredat in ViewBag.aktifmufredatlar)
+                            {
+                                <option value="@mufredat.MufredatID">@mufredat.MufredatAdi</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <select id="derssecimi" class="form-control">
+                            <option value="Secilemez">-- Ders Seçininiz --</option>
+                            @foreach (var ders in ViewBag.dersler)
+                            {
+                                <option value="@ders.DersID">@ders.DersKodu @ders.DersAdi</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <select id="donemsecimi" class="form-control">
+                            <option value="Secilemez">-- Ders Dönemi Seçininiz --</option>
+                            <option value="1">-- 1 --</option>
+                            <option value="2">-- 2 --</option>
+                            <option value="3">-- 3 --</option>
+                            <option value="4">-- 4 --</option>
+                            <option value="5">-- 5 --</option>
+                            <option value="6">-- 6 --</option>
+                            <option value="7">-- 7 --</option>
+                            <option value="8">-- 8 --</option>
+                        </select>
+                    </div>
+                    <div class="col-12 mt-3 text-center">
+                        <button type="button" class="btn btn-success px-5" onclick="MufredatDersEkle()">Ekle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../wwwroot/Content/js/Sabitler.js"></script>
+    <script src="../wwwroot/Content/js/bootstrap.bundle.min.js"></script>
+    <script src="../wwwroot/Content/js/bootstrap.bundle.min.js.map"></script>
+
+</body>
+</html>
